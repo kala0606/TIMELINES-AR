@@ -1,6 +1,6 @@
 let myImage;
 let c;
-let ts = 40;
+
 
 let yP = [];
 let x2P = [];
@@ -15,6 +15,8 @@ var WIDTH = window.innerWidth;
 var HEIGHT = window.innerHeight;
 var DIM = Math.min(WIDTH, HEIGHT);
 var M = DIM / DEFAULT_SIZE;
+
+let ts = 40;
 
 function setup() {
   createCanvas(WIDTH, HEIGHT);
@@ -34,6 +36,8 @@ function draw() {
   let letter = [];
   rectMode(CENTER)
 
+  // rotate(PI/2)
+
   translate(WIDTH/2, HEIGHT/2)
   scale(0.8)
   translate(-WIDTH/2, -HEIGHT/2)
@@ -43,7 +47,7 @@ function draw() {
   
   c = 0;
   for(var y = 0; y < HEIGHT; y+=ts*2){
-    for(var x = 0; x < WIDTH; x+=ts/5){
+    for(var x = WIDTH; x > 0; x-=ts/5){
       var index = (x + y * WIDTH) * 4;
       // letter[c] = round(map(myVid.pixels[index], 0, 255, 0, 9));
       alpha[c] = myVid.pixels[index];
@@ -59,7 +63,7 @@ function draw() {
   
   c = 0;
   for(var y = 0; y < HEIGHT; y+=ts*2){
-    for(var x = 0; x < WIDTH; x+=ts/5){
+    for(var x = WIDTH; x > 0; x-=ts/5){
       var index = (x + y * WIDTH) * 4;
       // var letter = round(map(pixels[index], 0, 255, 0, 9));
       // fill(255, 255, 255, alpha[c]);
@@ -69,7 +73,7 @@ function draw() {
       // fill(255)
       noStroke()
       // strokeWeight(0.1)
-      translate(x,y)
+      translate(WIDTH - x,y)
       r+=noise(x/100,y/100)
       rotate(r)
       rect(0,0,1,ts*2-5);
@@ -81,7 +85,7 @@ function draw() {
   }
   
   
-  
+  // print(Capture.list()); 
  
   // noLoop();
 }
